@@ -5,6 +5,7 @@ declare module 'knex/types/tables' {
     users: {
       id: string;
       name: string;
+      created_at: string;
       session_id?: string;
     };
   }
