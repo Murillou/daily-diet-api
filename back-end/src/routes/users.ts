@@ -5,12 +5,23 @@ import crypto from 'node:crypto';
 import { checkSessionIdExists } from '../middlewares/check-session-id-exists';
 
 export async function usersRoutes(app: FastifyInstance) {
-  app.get('/', { preHandler: [checkSessionIdExists] }, async request => {
-    const sessionId = request.cookies;
+  app.get(
+    '/',
+    { preHandler: [checkSessionIdExists] },
+    async (request, reply) => {
+      const sessionId = request.cookies.sessionId;
 
-    const users = await knex('users').where('session_id', sessionId).select();
+      const users = await knex('users')
+        .where('session_id', sessionId)
+        .select('name');
 
-    return { users };
+      const usersNames = users.map(users => users.name);
+      return reply.status(200).send({ users: usersNames });
+    }
+  );
+
+  app.post('/:diet', async (request, reply) => {
+    const createDietBodySchema = z.object({});
   });
 
   app.post('/', async (request, reply) => {
