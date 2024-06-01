@@ -6,8 +6,8 @@ export const config: Knex.Config = {
   connection: {
     filename: env.DATABASE_URL,
   },
-  migrations: { extension: 'ts', directory: './database/migrations' },
   useNullAsDefault: true,
+  migrations: { extension: 'ts', directory: './database/migrations' },
 };
 
 export const knex = knexSetup(config);
