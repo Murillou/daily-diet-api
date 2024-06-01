@@ -13,16 +13,37 @@ export async function usersRoutes(app: FastifyInstance) {
 
       const users = await knex('users')
         .where('session_id', sessionId)
-        .select('name');
+        .select('*');
 
-      const usersNames = users.map(users => users.name);
-      return reply.status(200).send({ users: usersNames });
+      return reply.status(200).send(users);
     }
   );
 
-  app.post('/:diet', async (request, reply) => {
-    const createDietBodySchema = z.object({});
-  });
+  app.post(
+    '/:diet',
+    { preHandler: [checkSessionIdExists] },
+    async (request, reply) => {
+      const createDietBodySchema = z.object({
+        name: z.string(),
+        description: z.string(),
+        time_diet: z.string(),
+        diet_or_no: z.string(),
+      });
+
+      const { name, description, time_diet, diet_or_no } =
+        createDietBodySchema.parse(request.body);
+
+      await knex('diets').insert({
+        id: crypto.randomUUID(),
+        name,
+        description,
+        time_diet,
+        diet_or_no,
+      });
+
+      return reply.status(201).send();
+    }
+  );
 
   app.post('/', async (request, reply) => {
     const createUsersBodySchema = z.object({
