@@ -15,7 +15,7 @@ declare module 'knex/types/tables' {
       description: string;
       time_diet: string;
       diet_or_no: string;
-      sessions_id?: string;
+      session_id?: string;
     };
   }
 }

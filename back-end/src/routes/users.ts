@@ -19,6 +19,20 @@ export async function usersRoutes(app: FastifyInstance) {
     }
   );
 
+  app.get(
+    '/:diet',
+    { preHandler: [checkSessionIdExists] },
+    async (request, reply) => {
+      const sessionId = request.cookies.sessionId;
+
+      const diets = await knex('diets')
+        .where('session_id', sessionId)
+        .select('*');
+
+      return { diets };
+    }
+  );
+
   app.post(
     '/:diet',
     { preHandler: [checkSessionIdExists] },
@@ -33,12 +47,15 @@ export async function usersRoutes(app: FastifyInstance) {
       const { name, description, time_diet, diet_or_no } =
         createDietBodySchema.parse(request.body);
 
+      const sessionId = request.cookies.sessionId;
+
       await knex('diets').insert({
         id: crypto.randomUUID(),
         name,
         description,
         time_diet,
         diet_or_no,
+        session_id: sessionId,
       });
 
       return reply.status(201).send();
