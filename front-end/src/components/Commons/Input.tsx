@@ -4,9 +4,11 @@ interface InputProps {
   type: string;
   id?: string;
   className?: string;
+  value?: string;
+  onChange?: () => {};
 }
 
-export function Input({ type, id, className }: InputProps) {
+export function Input({ type, id, className, value, onChange }: InputProps) {
   return (
     <input
       className={twMerge(
@@ -14,6 +16,8 @@ export function Input({ type, id, className }: InputProps) {
         className
       )}
       type={type}
+      value={value}
+      onChange={onChange}
       id={id}
     />
   );
