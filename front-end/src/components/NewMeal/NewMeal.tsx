@@ -3,6 +3,7 @@ import { Input } from '../Commons/Input';
 import { Label } from '../Commons/Label';
 import statusGreen from '../../assets/status-green.png';
 import statusRed from '../../assets/status-red.png';
+import { NavLink } from 'react-router-dom';
 
 export function NewMeal() {
   return (
@@ -61,7 +62,11 @@ export function NewMeal() {
           </div>
 
           <div>
-            <button></button>
+            <NavLink to="">
+              <button className="flex items-center justify-center w-full px-6 py-4 bg-base-gray text-white rounded-md gap-3 cursor-pointer mt-11">
+                Cadastrar refeição
+              </button>
+            </NavLink>
           </div>
         </form>
       </section>
