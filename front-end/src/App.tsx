@@ -1,11 +1,9 @@
-import { Header } from './components/Header/Header';
-import { Meal } from './components/Meal/Meal';
+import { Router } from './components/Router';
 
 export function App() {
   return (
     <>
-      <Header />
-      <Meal />
+      <Router />
     </>
   );
 }

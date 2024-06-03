@@ -1,4 +1,5 @@
 import { ArrowUpRight, Plus } from 'phosphor-react';
+import { NavLink } from 'react-router-dom';
 
 export function Meal() {
   return (
@@ -16,9 +17,11 @@ export function Meal() {
 
       <section className="flex flex-col mt-5 space-y-1">
         <h1 className="text-lg">Refeições</h1>
-        <button className="flex items-center justify-center w-full px-6 py-4 bg-base-gray text-white rounded-lg gap-3 cursor-pointer">
-          <Plus size={20} /> Nova refeição
-        </button>
+        <NavLink to="/NewMeal">
+          <button className="flex items-center justify-center w-full px-6 py-4 bg-base-gray text-white rounded-lg gap-3 cursor-pointer">
+            <Plus size={20} /> Nova refeição
+          </button>
+        </NavLink>
       </section>
     </main>
   );
