@@ -9,6 +9,7 @@ export default {
         'base-gray': '#333638',
         'base-gray-100': '#1B1D1E',
         'base-gray-500': '#DDDEDF',
+        'base-gray-600': '#EFF0F0',
       },
       fontFamily: {
         nunito: "'Nunito Sans', 'sans serif'",
