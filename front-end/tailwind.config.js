@@ -6,6 +6,7 @@ export default {
       colors: {
         'green-ligth': '#E5F0DB',
         'green-dark': '#639339',
+        'base-gray': '#333638',
       },
       fontFamily: {
         nunito: "'Nunito Sans', 'sans serif'",
